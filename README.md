@@ -21,7 +21,7 @@ A **2-hour lucid dreaming induction system** built with **pure algorithmic audio
    - Frequencies tied to **Schumann Resonance** (7.83 Hz) and **PHI ratios (1.618/0.618)**
    - Prime numbers for irregular rhythms
 - **No Temp Files:** All audio generated on-the-fly* with SoX
-   -_*(except 9 short AI pre-generated TTS sooth female voices "Do you dreaming?")_ 
+   - _*(except 9 short AI pre-generated TTS sooth female voices "Do you dreaming?")_ 
 
 ## Sleep & Lucid Dream Science
 #### Sleep Cycle Breakdown
