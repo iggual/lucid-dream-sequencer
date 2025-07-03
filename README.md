@@ -92,7 +92,7 @@ chmod +x lucid_dream_sequencer.sh
 ./lucid_dream_sequencer.sh
 ```
 ## Download the Sequencer
-- [Lucid-Dream-Sequencer]()
+- [Download: Lucid-Dream-Sequencer](https://github.com/iggual/lucid-dream-sequencer/archive/refs/heads/main.zip)
 
 ---
 ---
