@@ -176,6 +176,6 @@ sox -n full_sequence.wav synth 7200 ...
 
 >**⚠️ Experimental Prototype – Not for Medical Use**
 
-**Version 0.1 | Last Updated: 2025-07-03**
+**Version 0.1 | Last Updated: 2025-07-04**
 
 Made with Φ 🙵 φ for the curious minds of the future.
