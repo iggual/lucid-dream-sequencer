@@ -80,6 +80,7 @@ brew install sox
 #### Directory Setup
 ```
 lucid-dream-sequencer/
+├── README.md
 ├── lucid_dream_sequencer.sh  # The script
 └── audio/
     ├── 1_Voice.mp3           # TTS files (9 total)
