@@ -4,7 +4,7 @@
 # A Prototype
 
 ## Version 0.1 ###############
-## Last Updated: [3-7-2025] ##
+## Last Updated: [4-7-2025] ##
 ##############################
 
 # READ DISCLAIMER ABOUT LISTENING RESPONSIBILITY & SAFETY FIRST!! (Find below)
@@ -14,7 +14,6 @@
 # This is an experimental prototype. The Lucid Dream Sequencer was created with good intentions but
 # has not undergone rigorous testing or validation for safety, efficacy, or reliability. 
 # It may contain flaws, inaccuracies, or unintended effects.
-
 
 # Function to generate N2 spindle pulses with voice prompt
 function n2_spindles() {
@@ -37,7 +36,7 @@ function n2_spindles() {
       tremolo 16.18 70 \
       phaser 0.8 0.7 0.2 0.4 0.1 -s \
       remix - \
-      gain -10 \
+      gain -12 \
       fade t 0.2 $BURST_DURATION 0.2
     
     ((TOTAL_TIME += BURST_DURATION))
@@ -101,23 +100,27 @@ for i in {1..12}; do
   START=$(( (i-1)*10 ))
   END=$(( i*10 ))
   
+  # Set phaser level & frequency
+  PHASER_LEVEL=0.1 # DEFAULT: 0.4; MAX:0.5; MIN:0.0 (OFF)
+  PHASER_FREQ=0.1  # DEFAULT: 0.1 (10 sec); MAX:2; MIN:0.1
+  
   # Print stage info
   echo -e "\n Segment $i ($START–$END min): ${STAGES[$i]}"
-  
+
   # Play segment
   case $i in
-    1) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 7.83 50 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    2) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 4.854 50 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    3) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 1.618 70 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    4) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 0.618 70 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    5) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 0.618 70 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    6) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    7) play -r 44100 -n synth 600 whitenoise fade p 10 0 0 gain -12 tremolo 16.18 50 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
+    1) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 7.83 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    2) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 4.854 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    3) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 1.618 70 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    4) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 0.618 70 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    5) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 0.618 70 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    6) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    7) play -r 44100 -n synth 600 whitenoise fade p 10 0 0 gain -12 tremolo 16.18 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
     8) n2_spindles ;;  # With voice prompt "Do you dreaming?"
-    9) play -r 44100 -n synth 600 pinknoise fade p 0 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    10) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 1.618 70 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    11) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
-    12) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 0.4 0.1 -s remix - ;;
+    9) play -r 44100 -n synth 600 pinknoise fade p 0 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    10) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 1.618 70 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    11) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
+    12) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
   esac
 done
 
