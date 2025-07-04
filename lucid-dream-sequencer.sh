@@ -1,9 +1,3 @@
-
-Let's write README.md for the lucid dream sequencer project. Write something about this sequencer, sleep and lucid dream cycles, frequencies, and some other overall useful info. Mention also used text-to-speech AI generated voices. On short, make the state of the art README.md!:)
-
-Here's the latest version of the lucid dream sequencer:
-
-```bash
 #!/bin/bash
 
 # Lucid Dream Sequencer
@@ -198,4 +192,3 @@ done
 #################################################
 
 ## END
-```
