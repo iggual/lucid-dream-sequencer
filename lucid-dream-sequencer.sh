@@ -4,7 +4,7 @@
 # A Prototype
 
 ## Version 0.1 ###############
-## Last Updated: [4-7-2025] ##
+## Last Updated: [5-7-2025] ##
 ##############################
 
 # READ DISCLAIMER ABOUT LISTENING RESPONSIBILITY & SAFETY FIRST!! (Find below)
@@ -80,15 +80,15 @@ function n2_spindles() {
 
 # Sleep stage labels
 declare -A STAGES=(
-  [1]="N1 🌑  | Brown noise + 7.83Hz (Schumann)"
-  [2]="N2 🌒  | Pink noise + 4.854Hz (Theta/PHI*3)"
-  [3]="N3 🌑  | Brown noise + 1.618Hz (Delta/PHI)"
-  [4]="N3 🌑  | Brown noise + 0.618Hz (Delta/phi)"
-  [5]="N3 🌑  | Brown noise + 0.618Hz (Delta/phi)"
-  [6]="N2 🌒  | Pink noise + 6.18Hz (Theta/PHI*10)"
+  [1]="N1  🌑 | Brown noise + 7.83Hz (Schumann)"
+  [2]="N2  🌒 | Pink noise + 4.854Hz (Theta/PHI*3)"
+  [3]="N3  🌑 | Brown noise + 1.618Hz (Delta/PHI)"
+  [4]="N3  🌑 | Brown noise + 0.618Hz (Delta/phi)"
+  [5]="N3  🌑 | Brown noise + 0.618Hz (Delta/phi)"
+  [6]="N2  🌒 | Pink noise + 6.18Hz (Theta/PHI*10)"
   [7]="REM 🌕 | White noise + 16.18Hz (Beta/PHI*10)"
   [8]="REM 🌕 | White noise + 16.18Hz 5sec spindle pulses"
-  [9]="N2 🌒  | Pink noise + 6.18Hz (Theta/PHI*3.81)"
+  [9]="N2  🌒 | Pink noise + 6.18Hz (Theta/PHI*3.81)"
   [10]="N2 🌒 | Brown noise + 1.618Hz (Delta/PHI)"
   [11]="N3 🌑 | Pink noise + 6.18Hz (Theta/PHI*10)"
   [12]="N2 🌒 | Pink noise + 6.18Hz (Theta/PHI*10)"
@@ -100,13 +100,16 @@ for i in {1..12}; do
   START=$(( (i-1)*10 ))
   END=$(( i*10 ))
   
-  # Set phaser level & frequency
-  PHASER_LEVEL=0.1 # DEFAULT: 0.4; MAX:0.5; MIN:0.0 (OFF)
-  PHASER_FREQ=0.1  # DEFAULT: 0.1 (10 sec); MAX:2; MIN:0.1
+  # Phaser level & frequency
+  PHASER_LEVEL=0.1 # DEFAULT: 0.4; MAX:0.5 (clip); MIN:0.0 (OFF)
+  PHASER_FREQ=0.1  # DEFAULT: 0.1 (10 sec); MAX:2 (Hz); MIN:0.1
+  
+  # Date and time
+  TIMESTAMP=$(date +%F_%T)
   
   # Print stage info
-  echo -e "\n Segment $i ($START–$END min): ${STAGES[$i]}"
-
+  echo -e "\n Segment $i ($START–$END min): ${STAGES[$i]} | $TIMESTAMP"
+  
   # Play segment
   case $i in
     1) play -r 44100 -n synth 600 brownnoise fade p 10 0 10 gain -6 tremolo 7.83 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
@@ -145,8 +148,8 @@ done
 # Normal conversation ≈ 60 dB
 # Busy traffic ≈ 80 dB
 # Headphone max volume ≈ 100+ dB
-# Special Warning for Headphone Users:
 
+# Special Warning for Headphone Users:
 # Over-ear headphones or earbuds can deliver sound directly into the ear canal, increasing risk. 
 # Consider using noise-canceling headphones at low volumes instead of cranking up the sound to block external noise.
 # Do not fall asleep with in-ear devices (e.g., earbuds). They can cause discomfort, ear infections, or increased 
