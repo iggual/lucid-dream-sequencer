@@ -117,7 +117,7 @@ chmod +x lucid_dream_sequencer.sh
 +------------+-------+------------------------------+-----------------+
 ```
 ## Voice Integration
-- **AI Voices:** Generate ~3s prompts with tools like:
+- **AI Voices:** Generate ~3s with prompts
 - **File Naming:**
 ```
 audio/1_Voice.mp3
