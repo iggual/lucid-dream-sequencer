@@ -68,22 +68,54 @@ A **2-hour lucid dreaming induction system** built with **pure algorithmic audio
 - **Bash:** Manages timing, randomization, and flow
 - **TTS Voices:** AI-generated prompts 
 
-## Installation & Usage
-#### Dependencies
-```bash
-# Linux
-sudo apt install sox libsox-fmt-all
+## Version Comparison: Bash vs Python
+The Lucid Dream Sequencer offers **two implementations** of the same core system, each with distinct advantages:
 
-# macOS
-brew install sox
+#### Bash Script (lucid-dream-sequencer.sh)
+- **Pros:**
+   - Ultra-lightweight: Runs natively on Unix-like systems with just SoX and Bash.
+   - Instant execution: No runtime dependencies (ideal for minimal Linux environments).
+   - Transparent logic: Easy to audit/modernize for users comfortable with shell scripting.
+- **Cons:**
+   - Limited to macOS/Linux (Windows requires WSL or Cygwin).
+   - Complex timing/randomization requires arcane shell syntax.
+   - Less robust error handling.
+
+#### Python Script (lucid-dream-sequencer.py)
+- **Pros:**
+   - Cross-platform: Works seamlessly on Windows, macOS, and Linux.
+   - Extensible: Leverages Python libraries like NumPy for precise frequency math or random for sophisticated randomization.
+   - Better debugging: Clear logs and exception handling for unstable environments.
+- **Cons:**
+   - Requires Python 3 and dependencies (pyttsx3, numpy).
+   - Slightly higher resource usage due to Python runtime.
+
+## Install required tools and libraries:
+
+#### Linux (Bash + Python)  
+```bash
+sudo apt install sox libsox-fmt-all python3-pip  
+```
+#### macOS (Bash + Python)  
+```bash
+brew install sox  
+pip3 install numpy  
+```
+#### Windows (Python only)  
+```bash
+# 1. Install SoX 
+# 2. Add SoX to system PATH  
+# 3. Install Python dependencies  
+pip install numpy  
 ```
 #### Directory Setup
 ```
 lucid-dream-sequencer/
 ├── README.md
-├── lucid_dream_sequencer.sh  # The script
+├── lucid_dream_sequencer.py    # Python version
+├── lucid_dream_sequencer.sh    # The script
 └── audio/
-    ├── 1_Voice.mp3           # TTS files (9 total)
+    ├── 1_Voice.mp3             # TTS files (9 total)
     ├── 2_Voice.mp3
     └── ...9_Voice.mp3
 ```
@@ -91,6 +123,10 @@ lucid-dream-sequencer/
 ```bash
 chmod +x lucid_dream_sequencer.sh
 ./lucid_dream_sequencer.sh
+```
+#### Run the Python Version
+```bash
+python3 lucid-dream-sequencer.py
 ```
 ## Download the Sequencer
 - [Download: Lucid-Dream-Sequencer](https://github.com/iggual/lucid-dream-sequencer/archive/refs/heads/main.zip)
@@ -176,6 +212,6 @@ sox -n full_sequence.wav synth 7200 ...
 
 >**⚠️ Experimental Prototype – Not for Medical Use**
 
-**Version 0.1 | Last Updated: 2025-07-05**
+**Version 0.1 | Last Updated: 2025-07-08**
 
 Made with Φ 🙵 φ for the curious minds of the future.
