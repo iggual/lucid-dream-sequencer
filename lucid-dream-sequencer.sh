@@ -1,19 +1,8 @@
 #!/bin/bash
 
-# Lucid Dream Sequencer
-# A Prototype
-
 ## Version 0.1 ###############
-## Last Updated: [5-7-2025] ##
+## Last Updated: [8-7-2025] ##
 ##############################
-
-# READ DISCLAIMER ABOUT LISTENING RESPONSIBILITY & SAFETY FIRST!! (Find below)
-
-# ⚠️ Experimental Tool Disclaimer ⚠️
-
-# This is an experimental prototype. The Lucid Dream Sequencer was created with good intentions but
-# has not undergone rigorous testing or validation for safety, efficacy, or reliability. 
-# It may contain flaws, inaccuracies, or unintended effects.
 
 # Function to generate N2 spindle pulses with voice prompt
 function n2_spindles() {
@@ -126,75 +115,5 @@ for i in {1..12}; do
     12) play -r 44100 -n synth 600 pinknoise fade p 10 0 10 gain -8 tremolo 6.18 50 phaser 0.8 0.8 0.2 $PHASER_LEVEL $PHASER_FREQ -s remix - ;;
   esac
 done
-
-##########################################################
-## ⚠️ DISCLAIMER: LISTENING RESPONSIBILITY & SAFETY!! ⚠️ ##
-##########################################################
-
-# Purpose of This Tool
-# This Lucid Dream Sequencer is designed to provide ambient sounds aligned with sleep and lucid dreaming cycles 
-# for general wellness purposes. 
-# It is not a medical device, treatment, or diagnostic tool. 
-
-# Critical Volume Warning
-# Hearing Safety First:
-
-# Never use this script at high volumes, even if you feel you "need" loud sounds to fall asleep. 
-# Prolonged exposure to sounds above 85 dB (decibels) can cause permanent hearing damage, 
-# especially during sleep when your ears remain sensitive.
-# Start at low volumes and adjust only as needed. 
-
-# Avoid using headphones/earbuds at max volume. For reference:
-# Normal conversation ≈ 60 dB
-# Busy traffic ≈ 80 dB
-# Headphone max volume ≈ 100+ dB
-
-# Special Warning for Headphone Users:
-# Over-ear headphones or earbuds can deliver sound directly into the ear canal, increasing risk. 
-# Consider using noise-canceling headphones at low volumes instead of cranking up the sound to block external noise.
-# Do not fall asleep with in-ear devices (e.g., earbuds). They can cause discomfort, ear infections, or increased 
-# hearing risk if volume spikes occur.
-
-# Listening Responsibility
-
-# Volume & Duration: Users assume full responsibility for setting safe volume levels and usage durations. 
-# Prolonged exposure to loud sounds (even during sleep) may risk hearing damage.
-
-# Personal Health Awareness: If you have tinnitus, hearing loss, sleep disorders, or other medical conditions, 
-# consult a healthcare professional before use.
-# Environmental Safety: Ensure the sequencer does not interfere with alarms, emergency alerts, or other critical 
-# auditory cues in your environment.
-
-# Medical Disclaimer
-
-# This tool is not a substitute for professional medical advice, diagnosis, or treatment. 
-# Always seek the guidance of a licensed healthcare provider for sleep-related concerns or health questions.
-# Do not delay or disregard medical advice based on content or features within this sequencer.
-
-# No Liability for Outcomes
-
-# The creator(s) of this sequencer assume no responsibility for:
-# Individual health outcomes, including unintended effects of sound exposure.
-# Technical malfunctions (e.g., app crashes, incorrect timing of sounds).
-# Any reliance on the sequencer’s ability to improve sleep quality.
-
-# Final Disclaimer Note
-
-# Use this tool thoughtfully and adjust settings to suit your comfort. If discomfort, irritation, 
-# or adverse effects occur, discontinue use immediately.
-
-# Volume Safety Reminder:
-
-# Keep volume below 60% of maximum if unsure.
-# For children or sensitive users, supervise use and prioritize extra-low volumes.
-# By using this sequencer, you acknowledge and agree to the terms above.
-
-# Proceed only if you understand and accept the risks of using an untested tool.
-# Monitor your body’s response and prioritize safety over "experimentation."
-# By using this sequencer, you acknowledge and agree to the terms above.
-
-# Experimental Prototype – Not for Medical Use.
-
-#################################################
 
 ## END
