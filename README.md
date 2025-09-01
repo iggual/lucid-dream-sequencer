@@ -68,7 +68,7 @@ A **2-hour lucid dreaming induction system** built with **pure algorithmic audio
 - **Bash:** Manages timing, randomization, and flow
 - **TTS Voices:** AI-generated prompts 
 
-## Version Comparison: Bash vs Python
+## Version Comparison: Bash vs Python vs HTML
 The Lucid Dream Sequencer offers **three implementations** of the same core system, each with distinct advantages:
 
 #### Bash Script (lucid-dream-sequencer.sh)
