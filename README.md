@@ -69,7 +69,7 @@ A **2-hour lucid dreaming induction system** built with **pure algorithmic audio
 - **TTS Voices:** AI-generated prompts 
 
 ## Version Comparison: Bash vs Python
-The Lucid Dream Sequencer offers **two implementations** of the same core system, each with distinct advantages:
+The Lucid Dream Sequencer offers **three implementations** of the same core system, each with distinct advantages:
 
 #### Bash Script (lucid-dream-sequencer.sh)
 - **Pros:**
@@ -89,6 +89,8 @@ The Lucid Dream Sequencer offers **two implementations** of the same core system
 - **Cons:**
    - Requires Python 3 and dependencies (pyttsx3, numpy).
    - Slightly higher resource usage due to Python runtime.
+
+#### HTML (lucid-dream-sequencer.html)
 
 ## Install required tools and libraries:
 
