@@ -1,0 +1,1534 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Lucid dream sequencer designed for use during sleep, it aligns soundscapes with natural sleep cycles to enhance dream awareness.">
+    <meta name="keywords" content="Lucid, dream, sequencer, REM, sleep, Schumann, alpha, beta, gamma, delta, frequency.">
+    <title>Lucid Dream Sequencer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-image: url('img/background_l.jpg');
+            background-repeat: repeat;
+            color: #333;
+            line-height: 1.6;
+            padding: 0px;
+            font-size: 16px;
+            transition: background-image 0.3s ease;
+        }
+        
+        body.dark-theme {
+            background-image: url('img/background_d.jpg');
+            color: #e0e0e0;
+        }
+        
+        #container {
+            width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid #e0e0e0;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        body.dark-theme #container {
+            background-color: rgba(30, 30, 30, 0.95);
+            box-shadow: 0 0 32px rgba(0, 0, 0, 0.7);
+            border: 1px solid #333;
+        }
+        
+        header {
+            width: 800px;
+            height: 72px;
+            overflow: hidden;
+            border-bottom: 0px solid #aaa;
+        }
+        
+        header img {
+            width: 800px;
+            height: 72px;
+            object-fit: cover;
+        }
+        
+        nav {
+            display: flex;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #999;
+            padding: 10px;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease, border-bottom 0.3s ease;
+        }
+        
+        body.dark-theme nav {
+            background-color: #2a2a2a;
+            border-bottom: 1px solid #111;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: left;
+            gap: 2px;
+        }
+        
+        nav li {
+            margin-bottom: -5px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-theme nav a {
+            color: #e0e0e0;
+        }
+        
+        nav a:hover {
+            color: #000;
+        }
+        
+        body.dark-theme nav a:hover {
+            color: #fff;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #444;
+            transition: color 0.3s ease;
+            margin-right: 16px; /* Add some margin to the right */
+        }
+        
+        body.dark-theme .theme-toggle {
+            color: #e0e0e0;
+        }
+        
+        .loop-toggle {
+            background: none;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #444;
+            transition: color 0.3s ease;
+            margin-right: 16px;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        
+        .loop-toggle.active {
+            background-color: #555;
+            color: white;
+        }
+        
+        body.dark-theme .loop-toggle {
+            color: #e0e0e0;
+        }
+        
+        body.dark-theme .loop-toggle.active {
+            background-color: #ccc;
+            color: #000;
+        }
+        
+        article {
+            padding: 20px;
+        }
+        
+        h1, h2 {
+            color: #222;
+            margin: 20px 0 15px 0;
+            text-align: left;
+            transition: color 0.3s ease;
+            margin-top: 36px;
+        }
+        
+        body.dark-theme h1, 
+        body.dark-theme h2 {
+            color: #f0f0f0;
+  
+        }
+        
+        h1 {
+            font-size: 24px;
+            letter-spacing: -0.5px;
+        }
+        
+        h2 {
+            font-size: 20px;
+            letter-spacing: -0.3px;
+        }
+        h3 {
+            font-family: 'Georgia', serif;
+            font-size: 32px;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+        
+        h4 {
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            letter-spacing: -0.3px;
+            text-align: center;
+        }        
+         h5 {
+            font-size: 32px;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+        
+        h6 {
+            font-size: 24px;
+            letter-spacing: -0.3px;
+            text-align: center;
+        }        
+        
+        
+        figure {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        figure img {
+            max-width: 100%;
+            height: auto;
+            border: 0px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.4);
+        }
+        
+        body.dark-theme figure img {
+            box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.9);
+        }
+        
+        graphics img {
+            max-width: 100%;
+            height: auto;
+            border: 0px solid #e0e0e0;
+            border-radius: 0px;
+
+        }
+        
+        figcaption {
+            font-style: italic;
+            color: #333;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-theme figcaption {
+            color: #ccc;
+        }
+        
+        p {
+            margin: 10px 0;
+            line-height: 1.7;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+
+        ul ul {
+            padding-left: 20px; /* Indentation for first level of nesting */
+            list-style-type: circle; /* disc, circle, square, decimal, none */
+        }
+
+        ul ul ul {
+            padding-left: 20px; /* Indentation for second level of nesting */
+        }
+            
+        li {
+             margin-bottom: 20px;
+             text-indent: 0px; /* Adjust this value as needed */
+             padding-left: 10px; /* Match this value to the negative indent */
+        }
+        
+        hr {
+             border: 1px solid #bbb; 
+             height: 1px;
+        }
+         
+        body.dark-theme hr {
+            border: 1px solid #444;
+            height: 1px; 
+        }
+        
+        .tab {
+            margin: 24px 0;
+            padding-left: 24px;
+            border-left: 3px solid #ddd;
+            transition: border-left 0.3s ease;
+        }
+        
+        body.dark-theme .tab {
+            border-left: 3px solid #555;
+        }
+        
+        strong {
+            color: #000;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-theme strong {
+            color: #fff;
+        }
+        
+        em {
+            color: #444;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-theme em {
+            color: #bbb;
+        }
+        
+        footer {
+            background-color: #f8f8f8;
+            border-top: 1px solid #888;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            transition: background-color 0.3s ease, border-top 0.3s ease, color 0.3s ease;
+        }
+        
+        body.dark-theme footer {
+            background-color: #2a2a2a;
+            border-top: 1px solid #555;
+            color: #aaa;
+        }
+        
+        #content {
+            text-align: left;
+        }
+        
+
+        /* SEQUENCER SECTION */
+        .subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0.9;
+            max-width: 768px;
+            margin: 20px auto;
+        }    
+        
+        .btn {
+            background: linear-gradient(45deg, #555 0%, #555 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 3px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 3px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-theme .controls {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 3px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        @keyframes fadeInOut {
+        0%, 100% { 
+        opacity: 0.3;
+        }
+    50% { 
+        opacity: 1;
+    }
+}
+       
+        .status {
+            text-align: center;
+            font-size: 1rem;
+            margin: 15px 0;
+            min-height: 5px;     
+            animation: fadeInOut 3s ease-in-out infinite;
+            will-change: opacity;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        .progress-container {
+            background: rgba(128, 128, 128, 0.5);
+            border-radius: 3px;
+            height: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        body.dark-theme .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            height: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+        }        
+
+         .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #444 0%, #444 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }      
+
+        body.dark-theme .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ccc 0%, #ccc 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .visualization {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }        
+        .wave-container {
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(transparent, rgba(128, 128, 128, 0.3));
+            animation: wave 3s linear infinite;
+        }
+
+        .audio-visualizer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 100px;
+            gap: 2px;
+            margin: 16px 0;
+        }
+           .bar {
+            width: 120px;
+            background: linear-gradient(to top, #888, #888);
+            border-radius: 2px;
+            transition: height 0.1s ease;
+        }
+        .frequency-display {
+            font-size: 1.1rem;
+            margin: 16px 0;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 6px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            margin-top: 10px;
+        }
+
+        .volume-control label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .volume-control input {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        body.dark-theme .volume-control input {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }        
+          
+        
+
+        .volume-control input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #444;
+            cursor: pointer;
+        }     
+        
+         body.dark-theme .volume-control input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+        }     
+           
+
+        .spike-volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .spike-volume-control label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .spike-volume-control input {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+         body.dark-theme .spike-volume-control input {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }       
+        
+
+        .spike-volume-control input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #444;
+            cursor: pointer;
+        }
+
+        body.dark-theme .spike-volume-control input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+        }
+
+
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stages-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stage-card {
+            background: rgba(0, 0, 0, 0);
+            backdrop-filter: blur(10px);
+            border-radius: 3px;
+            padding: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        body.dark-theme .stage-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border-radius: 3px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }        
+
+        .stage-card:hover {
+            border-radius: 3px;
+            transform: scale(1.02, 1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.3);
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-theme .stage-card:hover {
+            border-radius: 3px;
+            transform: scale(1.02, 1.02);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+        }        
+        
+        .stage-card.active {
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #888;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+         
+        body.dark-theme .stage-card.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #888;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }       
+        
+        
+
+        .stage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stage-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        body.dark-theme .stage-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ccc;
+        }
+        
+        .stage-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .stage-description {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+
+</style>
+</head>
+
+<body>
+<div id="container">
+
+<header role="banner">
+   <img 
+    id="banner-img"
+    src="img/banner_l.jpg"
+    alt="Banner Light" 
+    width="800" 
+    height="256"
+  >
+</header>
+
+<nav role="navigation">
+    <ul>
+        <li><a href="#">Lucid</a></li>
+        <li><a href="#">Dream</a></li>
+        <li><a href="#">Sequencer</a></li>   
+    </ul>
+    <div>
+        <button class="loop-toggle" id="loop-toggle">⮔ Loop</button>
+        <button class="theme-toggle" id="theme-toggle">🌓</button>
+    </div>
+</nav>
+
+<article>
+        <p class="subtitle">Lucid dream sequencer is designed for use during sleep, it synchronizes soundscapes with natural sleep rhythms to enhance dream awareness.</p>
+        <div class="controls">
+            <div class="control-group">
+                <button id="startBtn" class="btn">Start Sleep Journey</button>
+                <button id="stopBtn" class="btn btn-stop">Stop Session</button>
+                <button id="skipBtn" class="btn">Skip to Next Stage</button>
+            </div>
+            <div class="status" id="status">Ready to begin your sleep journey</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div style="text-align: center;">
+            <div class="frequency-display">
+                Frequency: <span id="frequency">0.00 Hz</span>
+            </div>
+            <div class="timer" id="timer">00:00</div>
+            </div>
+        </div>
+        <div class="stages-grid" id="stagesGrid">
+            <!-- Stage cards will be generated by JavaScript -->
+        </div>
+
+</article>
+
+   <footer role="info">	
+   <div style="text-align: center; font-style: italic;">— Press <strong>'S'</strong> key or click 'Skip to Next Stage' to advance manually —</div>
+   </footer>
+   </div>
+</div>
+    <script>
+        class SleepStageSimulator {
+            constructor() {
+                this.stages = {
+                    1: { 
+                        title: "N1", 
+                        emoji: "🌑", 
+                        description: "Brown noise + 7.83Hz (Schumann)",
+                        color: "#7e57c2",
+                        duration: 600,
+                        frequency: 7.83,
+                        noiseType: "brown",
+                        volume: 0.5
+                    },
+                    2: { 
+                        title: "N2", 
+                        emoji: "🌒", 
+                        description: "Pink noise + 4.854Hz (Theta/PHI*3)",
+                        color: "#42a5f5",
+                        duration: 600,
+                        frequency: 4.854,
+                        noiseType: "pink",
+                        volume: 0.5
+                    },
+                    3: { 
+                        title: "N3", 
+                        emoji: "🌑", 
+                        description: "Brown noise + 1.618Hz (Delta/PHI)",
+                        color: "#26c6da",
+                        duration: 600,
+                        frequency: 1.618,
+                        noiseType: "brown",
+                        volume: 0.5
+                    },
+                    4: { 
+                        title: "N3", 
+                        emoji: "🌑", 
+                        description: "Brown noise + 0.618Hz (Delta/phi)",
+                        color: "#26c6da",
+                        duration: 600,
+                        frequency: 0.618,
+                        noiseType: "brown",
+                        volume: 0.5
+                    },
+                    5: { 
+                        title: "N3", 
+                        emoji: "🌑", 
+                        description: "Brown noise + 0.618Hz (Delta/phi)",
+                        color: "#26c6da",
+                        duration: 600,
+                        frequency: 0.618,
+                        noiseType: "brown",
+                        volume: 0.5
+                    },
+                    6: { 
+                        title: "N2", 
+                        emoji: "🌒", 
+                        description: "Pink noise + 6.18Hz (Theta/PHI*10)",
+                        color: "#42a5f5",
+                        duration: 600,
+                        frequency: 6.18,
+                        noiseType: "pink",
+                        volume: 0.5
+                    },
+                    7: { 
+                        title: "REM", 
+                        emoji: "🌕", 
+                        description: "White noise + 16.18Hz (Beta/PHI*10)",
+                        color: "#ffca28",
+                        duration: 600,
+                        frequency: 16.18,
+                        noiseType: "white",
+                        volume: 0.3
+                    },
+                    8: { 
+                        title: "REM", 
+                        emoji: "🌕", 
+                        description: "White noise + 16.18Hz tremolo pulses + random voice clips",
+                        color: "#ffca28",
+                        duration: 600,
+                        frequency: 16.18,
+                        noiseType: "white",
+                        hasSpindles: true,
+                        volume: 0.1,
+                        spikeVolume: 0.5
+                    },
+                    9: { 
+                        title: "N2", 
+                        emoji: "🌒", 
+                        description: "Pink noise + 6.18Hz (Theta/PHI*3.81)",
+                        color: "#42a5f5",
+                        duration: 600,
+                        frequency: 6.18,
+                        noiseType: "pink",
+                        volume: 0.5
+                    },
+                    10: { 
+                        title: "N2", 
+                        emoji: "🌒", 
+                        description: "Brown noise + 1.618Hz (Delta/PHI)",
+                        color: "#42a5f5",
+                        duration: 600,
+                        frequency: 1.618,
+                        noiseType: "brown",
+                        volume: 0.5
+                    },
+                    11: { 
+                        title: "N3", 
+                        emoji: "🌑", 
+                        description: "Pink noise + 6.18Hz (Theta/PHI*10)",
+                        color: "#26c6da",
+                        duration: 600,
+                        frequency: 6.18,
+                        noiseType: "pink",
+                        volume: 0.5
+                    },
+                    12: { 
+                        title: "N2", 
+                        emoji: "🌒", 
+                        description: "Pink noise + 6.18Hz (Theta/PHI*10)",
+                        color: "#42a5f5",
+                        duration: 600,
+                        frequency: 6.18,
+                        noiseType: "pink",
+                        volume: 0.5
+                    }
+                };
+
+                this.currentStage = 0;
+                this.isPlaying = false;
+                this.skipRequested = false;
+                this.startTime = null;
+                this.timerInterval = null;
+                this.audioContext = null;
+                this.noiseSource = null;
+                this.tremoloGain = null;
+                this.masterGain = null;
+                this.visualizerBars = [];
+                this.spindleInterval = null;
+                this.spindleGain = null;
+                this.pulseTimeout = null;
+                this.pulseGain = null;
+                this.fadeInDuration = 10; // 10 seconds
+                this.fadeOutDuration = 10; // 10 seconds
+                this.stageStartTime = null;
+                this.pulseCount = 0;
+                this.voiceSounds = []; // Array to hold voice audio elements
+                this.loopEnabled = false; // Loop functionality
+
+                this.initializeElements();
+                this.createStageCards();
+                this.bindEvents();
+                this.createAudioVisualizer();
+                this.preloadVoiceSounds(); // Preload voice sounds
+            }
+
+            preloadVoiceSounds() {
+                // Preload all 9 voice sounds
+                for (let i = 1; i <= 9; i++) {
+                    const audio = new Audio();
+                    audio.src = `audio/${i}_Voice.mp3`;
+                    audio.preload = 'auto';
+                    audio.load(); // Force loading
+                    this.voiceSounds.push(audio);
+                }
+            }
+
+            initializeElements() {
+                this.startBtn = document.getElementById('startBtn');
+                this.stopBtn = document.getElementById('stopBtn');
+                this.skipBtn = document.getElementById('skipBtn');
+                this.status = document.getElementById('status');
+                this.progressBar = document.getElementById('progressBar');
+                this.stagesGrid = document.getElementById('stagesGrid');
+                this.frequencyDisplay = document.getElementById('frequency');
+                this.timerDisplay = document.getElementById('timer');
+                this.audioVisualizer = document.getElementById('audioVisualizer');
+                this.loopToggle = document.getElementById('loop-toggle');
+            }
+
+            createAudioVisualizer() {
+                // Create visualizer container if it doesn't exist
+                if (!this.audioVisualizer) {
+                    this.audioVisualizer = document.createElement('div');
+                    this.audioVisualizer.id = 'audioVisualizer';
+                    this.audioVisualizer.className = 'audio-visualizer';
+                    document.querySelector('.controls').appendChild(this.audioVisualizer);
+                }
+                
+                this.audioVisualizer.innerHTML = '';
+                for (let i = 0; i < 32; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'bar';
+                    bar.style.height = '5px';
+                    this.audioVisualizer.appendChild(bar);
+                    this.visualizerBars.push(bar);
+                }
+            }
+
+            createStageCards() {
+                this.stagesGrid.innerHTML = '';
+                for (let i = 1; i <= 12; i++) {
+                    const stage = this.stages[i];
+                    const card = document.createElement('div');
+                    card.className = 'stage-card';
+                    card.innerHTML = `
+                        <div class="stage-header">
+                            <div class="stage-number">Stage ${i}</div>
+                            <div class="stage-title">${stage.emoji} ${stage.title}</div>
+                        </div>
+                        <div class="stage-description">${stage.description}</div>
+                        <div class="volume-control">
+                            <label for="volume-${i}">Volume:</label>
+                            <input type="range" id="volume-${i}" min="0" max="1" step="0.01" value="${stage.volume}">
+                        </div>
+                        ${stage.hasSpindles ? `
+                        <div class="spike-volume-control">
+                            <label for="spike-volume-${i}">Spike Volume:</label>
+                            <input type="range" id="spike-volume-${i}" min="0" max="1" step="0.01" value="${stage.spikeVolume}">
+                        </div>
+                        ` : ''}
+                    `;
+                    card.addEventListener('click', () => this.playStage(i));
+                    this.stagesGrid.appendChild(card);
+                }
+            }
+
+            bindEvents() {
+                this.startBtn.addEventListener('click', () => this.startJourney());
+                this.stopBtn.addEventListener('click', () => this.stopSession());
+                this.skipBtn.addEventListener('click', () => this.skipStage());
+                this.loopToggle.addEventListener('click', () => this.toggleLoop());
+                
+                // Keyboard shortcut for skipping
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 's' || e.key === 'S') {
+                        this.skipStage();
+                    }
+                });
+
+                // Bind volume controls
+                for (let i = 1; i <= 12; i++) {
+                    const volumeSlider = document.getElementById(`volume-${i}`);
+                    if (volumeSlider) {
+                        volumeSlider.addEventListener('input', (e) => {
+                            this.stages[i].volume = parseFloat(e.target.value);
+                            // If this is the currently playing stage, update the volume
+                            if (this.currentStage === i && this.masterGain) {
+                                this.masterGain.gain.value = this.stages[i].volume;
+                            }
+                        });
+                    }
+                    
+                    // Bind spike volume controls for stage 8
+                    if (i === 8) {
+                        const spikeVolumeSlider = document.getElementById(`spike-volume-${i}`);
+                        if (spikeVolumeSlider) {
+                            spikeVolumeSlider.addEventListener('input', (e) => {
+                                this.stages[i].spikeVolume = parseFloat(e.target.value);
+                            });
+                        }
+                    }
+                }
+            }
+
+            toggleLoop() {
+                this.loopEnabled = !this.loopEnabled;
+                if (this.loopEnabled) {
+                    this.loopToggle.classList.add('active');
+                    this.loopToggle.textContent = '⮔ Loop ON';
+                } else {
+                    this.loopToggle.classList.remove('active');
+                    this.loopToggle.textContent = '⮔ Loop';
+                }
+            }
+
+            initAudio() {
+                try {
+                    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    return true;
+                } catch (e) {
+                    console.error('Audio context not supported', e);
+                    return false;
+                }
+            }
+
+            createNoise(type) {
+                const bufferSize = 2 * this.audioContext.sampleRate;
+                const noiseBuffer = this.audioContext.createBuffer(1, bufferSize, this.audioContext.sampleRate);
+                const output = noiseBuffer.getChannelData(0);
+                
+                switch(type) {
+                    case 'white':
+                        for (let i = 0; i < bufferSize; i++) {
+                            output[i] = Math.random() * 2 - 1;
+                        }
+                        break;
+                    case 'pink':
+                        let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+                        for (let i = 0; i < bufferSize; i++) {
+                            const white = Math.random() * 2 - 1;
+                            b0 = 0.99886 * b0 + white * 0.0555179;
+                            b1 = 0.99332 * b1 + white * 0.0750759;
+                            b2 = 0.96900 * b2 + white * 0.1538520;
+                            b3 = 0.86650 * b3 + white * 0.3104856;
+                            b4 = 0.55000 * b4 + white * 0.5329522;
+                            b5 = -0.7616 * b5 - white * 0.0168980;
+                            output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+                            output[i] *= 0.11;
+                            b6 = white * 0.115926;
+                        }
+                        break;
+                    case 'brown':
+                        let lastOut = 0;
+                        for (let i = 0; i < bufferSize; i++) {
+                            const white = Math.random() * 2 - 1;
+                            output[i] = (lastOut + (0.02 * white)) / 1.02;
+                            lastOut = output[i];
+                            output[i] *= 3.5;
+                        }
+                        break;
+                }
+                
+                return noiseBuffer;
+            }
+
+            createTremoloEffect(frequency) {
+                if (!this.audioContext) return null;
+                
+                // Create LFO (Low Frequency Oscillator) for tremolo
+                const lfo = this.audioContext.createOscillator();
+                const lfoGain = this.audioContext.createGain();
+                
+                lfo.type = 'sine';
+                lfo.frequency.value = frequency;
+                
+                // Tremolo depth (0.5 means 50% volume modulation)
+                lfoGain.gain.value = 0.5;
+                
+                lfo.connect(lfoGain);
+                lfo.start();
+                
+                return lfoGain;
+            }
+
+            playNoise(type, tremoloFreq, volume) {
+                if (!this.audioContext) return;
+                
+                // Stop previous audio
+                if (this.noiseSource) {
+                    this.noiseSource.stop();
+                }
+                
+                // Create noise buffer
+                const noiseBuffer = this.createNoise(type);
+                this.noiseSource = this.audioContext.createBufferSource();
+                this.noiseSource.buffer = noiseBuffer;
+                this.noiseSource.loop = true;
+                
+                // Create tremolo effect
+                this.tremoloGain = this.createTremoloEffect(tremoloFreq);
+                
+                // Create master gain
+                this.masterGain = this.audioContext.createGain();
+                this.masterGain.gain.setValueAtTime(0, this.audioContext.currentTime); // Start at 0 for fade in
+                
+                // Connect nodes properly for tremolo effect
+                if (this.tremoloGain) {
+                    // Create a gain node that will be modulated by the LFO
+                    const modulatedGain = this.audioContext.createGain();
+                    modulatedGain.gain.value = 0.5; // Base gain level
+                    
+                    // Connect LFO to modulate the gain
+                    this.tremoloGain.connect(modulatedGain.gain);
+                    
+                    // Connect audio chain: noise -> modulated gain -> master gain -> output
+                    this.noiseSource.connect(modulatedGain);
+                    modulatedGain.connect(this.masterGain);
+                } else {
+                    // If no tremolo, connect directly
+                    this.noiseSource.connect(this.masterGain);
+                }
+                
+                this.masterGain.connect(this.audioContext.destination);
+                
+                // Start playback
+                this.noiseSource.start();
+                
+                // Apply fade in
+                this.masterGain.gain.linearRampToValueAtTime(volume, this.audioContext.currentTime + this.fadeInDuration);
+                
+                // Start visualization
+                this.startVisualization();
+            }
+
+            playRandomVoice() {
+                if (this.currentStage !== 8 || !this.isPlaying) return;
+                
+                // Select a random voice sound (1-9)
+                const randomIndex = Math.floor(Math.random() * 9);
+                const voiceSound = this.voiceSounds[randomIndex];
+                
+                // Clone the audio element to allow overlapping playback
+                const voiceClone = voiceSound.cloneNode();
+                voiceClone.volume = this.stages[8].spikeVolume;
+                
+                // Play the voice sound
+                voiceClone.play().catch(e => console.log('Voice playback failed:', e));
+                
+                console.log(`Playing voice sound: ${randomIndex + 1}_Voice.mp3`);
+            }
+
+            startPulseSequence() {
+                if (this.pulseTimeout) {
+                    clearTimeout(this.pulseTimeout);
+                }
+                
+                this.pulseCount = 0;
+                this.stageStartTime = Date.now();
+
+                const playPulse = () => {
+                    if (!this.isPlaying || this.currentStage !== 8) return;
+                    
+                    // Check if we're close to the end of the stage (less than 10 seconds remaining)
+                    const elapsedInStage = (Date.now() - this.stageStartTime) / 1000;
+                    const remainingTime = this.stages[8].duration - elapsedInStage;
+                    
+                    if (remainingTime <= 10) {
+                        console.log('Not playing pulse - too close to stage end');
+                        return;
+                    }
+
+                    // Create white noise buffer for pulse (3 seconds)
+                    const bufferSize = this.audioContext.sampleRate * 3;
+                    const noiseBuffer = this.audioContext.createBuffer(1, bufferSize, this.audioContext.sampleRate);
+                    const output = noiseBuffer.getChannelData(0);
+                    
+                    for (let i = 0; i < bufferSize; i++) {
+                        output[i] = Math.random() * 2 - 1;
+                    }
+
+                    // Create pulse source
+                    const pulseSource = this.audioContext.createBufferSource();
+                    pulseSource.buffer = noiseBuffer;
+                    
+                    // Create tremolo effect for the pulse (16.18Hz)
+                    const pulseTremolo = this.createTremoloEffect(16.18);
+                    
+                    // Create envelope for pulse (fade in/out)
+                    const pulseEnvGain = this.audioContext.createGain();
+                    pulseEnvGain.gain.setValueAtTime(0, this.audioContext.currentTime);
+                    pulseEnvGain.gain.linearRampToValueAtTime(this.stages[8].spikeVolume, this.audioContext.currentTime + 0.1); // Fast fade in
+                    pulseEnvGain.gain.setValueAtTime(this.stages[8].spikeVolume, this.audioContext.currentTime + 4.8); // Sustain
+                    pulseEnvGain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + 5); // Fast fade out
+                    
+                    // Connect pulse with tremolo: source -> tremolo -> envelope -> output
+                    if (pulseTremolo) {
+                        const modulatedGain = this.audioContext.createGain();
+                        modulatedGain.gain.value = 0.5;
+                        pulseTremolo.connect(modulatedGain.gain);
+                        pulseSource.connect(modulatedGain);
+                        modulatedGain.connect(pulseEnvGain);
+                    } else {
+                        pulseSource.connect(pulseEnvGain);
+                    }
+                    
+                    pulseEnvGain.connect(this.audioContext.destination);
+                    pulseSource.start();
+                    
+                    // Play a random voice sound right after the pulse starts
+                    setTimeout(() => {
+                        this.playRandomVoice();
+                    }, 5000); // Play voice 5000ms after pulse starts
+                    
+                    // Visual feedback for pulse
+                    this.visualizePulse();
+                    
+                    this.pulseCount++;
+                    console.log(`Pulse ${this.pulseCount} played`);
+                    
+                    // Schedule next pulse with random interval (20-30 seconds)
+                    const nextInterval = Math.floor(Math.random() * 11 + 20) * 1000;
+                    console.log(`Next pulse scheduled in ${nextInterval/1000} seconds`);
+                    
+                    // Check if next pulse would be too close to stage end
+                    const timeUntilNextPulse = elapsedInStage + (nextInterval / 1000);
+                    if (timeUntilNextPulse + 5 > this.stages[8].duration - 10) {
+                        console.log('Not scheduling next pulse - would be too close to stage end');
+                        return;
+                    }
+                    
+                    this.pulseTimeout = setTimeout(playPulse, nextInterval);
+                };
+
+                // First pulse after random delay (20-30 seconds)
+                const firstDelay = Math.floor(Math.random() * 11 + 20) * 1000;
+                console.log(`First pulse scheduled in ${firstDelay/1000} seconds`);
+                this.pulseTimeout = setTimeout(playPulse, firstDelay);
+            }
+
+            visualizePulse() {
+                // Flash the visualizer bars during pulse
+                const originalHeights = this.visualizerBars.map(bar => bar.style.height);
+                
+                // Increase all bars height for 3 seconds
+                this.visualizerBars.forEach(bar => {
+                    bar.style.height = '80px';
+                    bar.style.background = 'linear-gradient(to top, #ccc, #ccc)';
+                });
+                
+                setTimeout(() => {
+                    this.visualizerBars.forEach((bar, index) => {
+                        bar.style.height = originalHeights[index] || '5px';
+                        bar.style.background = 'linear-gradient(to top, #888, #888)';
+                    });
+                }, 3000);
+            }
+
+            startVisualization() {
+                if (!this.audioContext) return;
+                
+                const updateVisualizer = () => {
+                    if (!this.isPlaying) return;
+                    
+                    // Update bars with random heights for visualization effect
+                    this.visualizerBars.forEach(bar => {
+                        const height = 5 + Math.random() * 95;
+                        bar.style.height = `${height}px`;
+                    });
+                    
+                    requestAnimationFrame(updateVisualizer);
+                };
+                
+                updateVisualizer();
+            }
+
+            startJourney() {
+                if (this.isPlaying) return;
+                
+                if (!this.initAudio()) {
+                    this.status.textContent = 'Audio not supported in this browser';
+                    return;
+                }
+                
+                this.currentStage = 0;
+                this.isPlaying = true;
+                this.skipRequested = false;
+                this.status.textContent = 'Starting sleep journey...';
+                this.playNextStage();
+            }
+
+            stopSession() {
+                this.isPlaying = false;
+                this.skipRequested = false;
+                this.currentStage = 0;
+                this.status.textContent = 'Session stopped';
+                this.updateProgressBar(0);
+                this.clearTimer();
+                this.updateActiveStage();
+                
+                // Stop audio
+                if (this.noiseSource) {
+                    this.noiseSource.stop();
+                    this.noiseSource = null;
+                }
+                if (this.audioContext) {
+                    this.audioContext.close();
+                    this.audioContext = null;
+                }
+                
+                // Clear intervals and timeouts
+                if (this.spindleInterval) {
+                    clearInterval(this.spindleInterval);
+                    this.spindleInterval = null;
+                }
+                if (this.pulseTimeout) {
+                    clearTimeout(this.pulseTimeout);
+                    this.pulseTimeout = null;
+                }
+                
+                // Reset visualizer
+                this.visualizerBars.forEach(bar => {
+                    bar.style.height = '5px';
+                });
+                
+                // Reset gains
+                this.spindleGain = null;
+                this.tremoloGain = null;
+                this.masterGain = null;
+                this.pulseGain = null;
+                this.pulseCount = 0;
+                this.stageStartTime = null;
+            }
+
+            skipStage() {
+                if (!this.isPlaying) return;
+                this.skipRequested = true;
+                this.status.textContent = 'Skipping to next stage...';
+                setTimeout(() => {
+                    this.skipRequested = false;
+                }, 1000);
+            }
+
+            playNextStage() {
+                if (!this.isPlaying) return;
+                
+                // Fade out current stage if it exists
+                if (this.masterGain && this.currentStage > 0) {
+                    this.masterGain.gain.cancelScheduledValues(this.audioContext.currentTime);
+                    this.masterGain.gain.setValueAtTime(this.masterGain.gain.value, this.audioContext.currentTime);
+                    this.masterGain.gain.linearRampToValueAtTime(0, this.audioContext.currentTime + this.fadeOutDuration);
+                    
+                    // Wait for fade out to complete before starting next stage
+                    setTimeout(() => {
+                        this.proceedToNextStage();
+                    }, this.fadeOutDuration * 1000);
+                } else {
+                    this.proceedToNextStage();
+                }
+            }
+
+            proceedToNextStage() {
+                if (!this.isPlaying) return;
+                
+                this.currentStage++;
+                
+                // Check if we've reached the end of the sequence
+                if (this.currentStage > 12) {
+                    if (this.loopEnabled) {
+                        this.currentStage = 1; // Loop back to stage 1
+                        this.status.textContent = 'Looping back to Stage 1';
+                    } else {
+                        this.status.textContent = 'Sleep journey completed!';
+                        this.stopSession();
+                        return;
+                    }
+                }
+
+                const stage = this.stages[this.currentStage];
+                this.status.textContent = `Playing Stage ${this.currentStage}: ${stage.title} - ${stage.description}`;
+                this.updateActiveStage();
+                this.updateFrequency(stage.frequency);
+                this.startTimer(stage.duration);
+                
+                // Play audio with stage volume
+                this.playNoise(stage.noiseType, stage.frequency, stage.volume);
+                
+                // Start pulse sequence for stage 8
+                if (stage.hasSpindles) {
+                    this.startPulseSequence();
+                } else if (this.pulseTimeout) {
+                    clearTimeout(this.pulseTimeout);
+                    this.pulseTimeout = null;
+                }
+                
+                let elapsed = 0;
+                const interval = setInterval(() => {
+                    if (!this.isPlaying || this.skipRequested) {
+                        clearInterval(interval);
+                        if (this.isPlaying) {
+                            this.playNextStage();
+                        }
+                        return;
+                    }
+                    
+                    elapsed += 1;
+                    const progress = (elapsed / stage.duration) * 100;
+                    this.updateProgressBar(progress);
+                    
+                    if (elapsed >= stage.duration) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            if (this.isPlaying && !this.skipRequested) {
+                                this.playNextStage();
+                            }
+                        }, 100);
+                    }
+                }, 1000);
+            }
+
+            playStage(stageNumber) {
+                if (this.isPlaying) return;
+                
+                if (!this.initAudio()) {
+                    this.status.textContent = 'Audio not supported in this browser';
+                    return;
+                }
+                
+                this.currentStage = stageNumber - 1;
+                this.isPlaying = true;
+                this.skipRequested = false;
+                this.playNextStage();
+            }
+
+            updateActiveStage() {
+                const cards = this.stagesGrid.querySelectorAll('.stage-card');
+                cards.forEach((card, index) => {
+                    if (index + 1 === this.currentStage) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+            }
+
+            updateProgressBar(percentage) {
+                this.progressBar.style.width = `${Math.min(percentage, 100)}%`;
+            }
+
+            updateFrequency(frequency) {
+                this.frequencyDisplay.textContent = `${frequency.toFixed(2)} Hz`;
+            }
+
+            startTimer(duration) {
+                this.startTime = Date.now();
+                this.clearTimer();
+                
+                this.timerInterval = setInterval(() => {
+                    if (!this.isPlaying) {
+                        this.clearTimer();
+                        return;
+                    }
+                    
+                    const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
+                    const remaining = Math.max(0, duration - elapsed);
+                    const minutes = Math.floor(remaining / 60);
+                    const seconds = remaining % 60;
+                    this.timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    if (remaining <= 0) {
+                        this.clearTimer();
+                    }
+                }, 1000);
+            }
+
+            clearTimer() {
+                if (this.timerInterval) {
+                    clearInterval(this.timerInterval);
+                    this.timerInterval = null;
+                }
+                this.timerDisplay.textContent = '00:00';
+            }
+        }
+
+        // Initialize the simulator when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SleepStageSimulator();
+        });
+    </script>
+    
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const bannerImg = document.getElementById('banner-img');
+
+    // Set default theme: 'light' or 'dark'
+    const defaultTheme = 'dark'; // ← Make sure this is set to 'light' or 'dark'.
+
+    // const savedTheme = localStorage.getItem('theme'); // Optional: comment this to bypass saved theme
+    const savedTheme = null; // Temporarily force default theme during testing
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    console.log("Saved Theme:", savedTheme);
+    console.log("Default Theme:", defaultTheme);
+    console.log("System Prefers Dark:", prefersDark);
+
+    function enableDarkTheme() {
+        body.classList.add('dark-theme');
+        themeToggle.textContent = '☀️';
+        bannerImg.src = 'img/banner_d.jpg';
+        console.log("Dark theme applied");
+    }
+
+    function disableDarkTheme() {
+        body.classList.remove('dark-theme');
+        themeToggle.textContent = '🌓';
+        bannerImg.src = 'img/banner_l.jpg';
+        console.log("Light theme applied");
+    }
+
+    // Determine initial theme
+    if (savedTheme === 'dark') {
+        enableDarkTheme();
+    } else if (savedTheme === 'light') {
+        disableDarkTheme();
+    } else if (defaultTheme === 'dark') {
+        enableDarkTheme();
+    } else if (defaultTheme === 'light') {
+        disableDarkTheme();
+    } else if (prefersDark) {
+        enableDarkTheme();
+    } else {
+        disableDarkTheme();
+    }
+
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-theme')) {
+            disableDarkTheme();
+            // localStorage.setItem('theme', 'light');
+        } else {
+            enableDarkTheme();
+            // localStorage.setItem('theme', 'dark');
+        }
+    });
+});
+</script>
+</body>	
+</html>
