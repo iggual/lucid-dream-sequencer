@@ -1,7 +1,7 @@
 ---
 title: "Lucid Dream Sequencer"
 date: 2025-07-03T14:40:16+18:00
-tags: ['Lucid', 'Dream', 'Sequencer', 'Bash', 'Sox']
+tags: ['Lucid', 'Dream', 'Sequencer', 'Bash', 'Python', 'HTML']
 ---
 # Lucid Dream Sequencer 
 #### State-of-the-Art README.md
